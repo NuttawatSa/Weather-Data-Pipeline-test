@@ -72,10 +72,10 @@ for c ,(lat, long) in cities.items():
 if city_list:
     result = pd.concat(city_list, ignore_index=True)
     print(result)
-    
-    logging.info(f"{success_cities} cities")
+
+    logging.info(f"{success_cities} cities")  
     logging.info(f"Rows processed: {len(result)}")
-    
+
 else:
     result = pd.DataFrame()
     print("No data")

@@ -4,9 +4,10 @@ import json
 import sqlite3
 import logging
 import time
+import os
 
 url = "https://api.open-meteo.com/v1/forecast"
-
+os.makedirs("raw", exist_ok=True)
 cities = {
     "Bangkok": (13.754, 100.5014),
     "Chiang_Mai": (18.7904, 98.9847),
@@ -35,11 +36,11 @@ for c ,(lat, long) in cities.items():
         "timezone": "auto",
     }
     try:
-        ##raise Exception()
+    
         response = rq.get(url, params= params)
         response.raise_for_status() 
         cities_data = response.json() 
-        with open(f"{c}.json", "w", encoding="utf-8") as f:
+        with open(f"raw/{c}.json", "w", encoding="utf-8") as f:
             json.dump(cities_data, f, ensure_ascii=False, indent=4)
         df = pd.DataFrame(
             {
@@ -115,5 +116,10 @@ data,
 
 connect.commit()
 connect.close()
+
+
+
+
+
 
     

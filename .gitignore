@@ -1,0 +1,4 @@
+weather.log
+__pycache__/
+*.pyc
+weather.db 
